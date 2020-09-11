@@ -1,0 +1,19 @@
+<%- include('header.ejs') %>
+<div class="row">
+  <% model.forEach(function(item) { %>
+    <div class="col-sm-12">
+      <div class="card fluid">
+        <h2><%=item.action%></h2>
+        <% if (item.parameters) { %>
+          <h3>parameters</h3>
+          <pre><%=JSON.stringify(item.parameters, undefined, 2)%></pre>
+        <% } %>
+        <% if (item.body) { %>
+          <h3>body</h3>
+          <pre><%=JSON.stringify(item.body, undefined, 2)%></pre>
+        <% } %>
+      </div><!--card fluid-->
+    </div><!--col-sm-12-->
+    <% })%>
+</div><!--row-->
+<%- include('footer.ejs') %>

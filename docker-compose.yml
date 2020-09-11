@@ -1,0 +1,66 @@
+version: '3.4'
+
+services:
+  koakh-typescript-node-express-starter-simplified-api-mongodb:
+    image: mongo
+    hostname: mongodb
+    domainname: koakh.com
+    container_name: koakh-typescript-node-express-starter-simplified-api-mongodb
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./volumes/mongodb/:/data/db
+      - ./volumes/backups:/backups
+    # uncomment to expose ports on host machine
+    # ports:
+    #   - 27017:27017
+    # default to .env, or require for docker-compose run
+    env_file:
+      - .env
+
+  koakh-typescript-rest-actions-api-sample-app:
+    # this works if docker-compose up is launched in api folder
+    build: .
+    # outside, using context
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./folder
+    # using image to force images to have implicit name, else compose prefix it with folder name ex ls-api_
+    image: koakh-typescript-rest-actions-api-sample-app
+    # using hub image
+    # image: koakh/koakh-typescript-rest-actions-api-sample-app:1.0.0
+    hostname: server
+    domainname: koakh.com
+    container_name: koakh-typescript-rest-actions-api-sample-app
+    depends_on:
+      - koakh-typescript-node-express-starter-simplified-api-mongodb
+    links:
+      - koakh-typescript-node-express-starter-simplified-api-mongodb:mongodb
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # use this to development mode
+      # - ./api:/usr/src/app
+      # - ./volumes/app/.env:/usr/src/app/.env
+      - .env:/usr/src/app/.env
+      - ./volumes/server/download:/usr/src/app/download
+      # override default self signed certificates
+      - ./config:/usr/src/app/config
+      # expose log to outside
+      # - ./volumes/server/logs:/usr/src/app/logs
+    ports:
+      - ${HTTP_SERVER_PORT}:${HTTP_SERVER_PORT}
+      - ${HTTPS_SERVER_PORT}:${HTTPS_SERVER_PORT}
+      # enable debug inside container
+      # - 9229:9229
+    # default to .env, or require for docker-compose run
+    env_file:
+      - .env
+    # override default staging certificates
+    environment: 
+      WAIT_HOSTS: mongodb:27017
+      HTTPS_SERVER_CERT: server.crt
+      HTTPS_SERVER_KEY: server.key
+      MONGO_URL: mongodb://mongodb/books
+    # wip: use production version: required config
+    # command: node dist/app.js

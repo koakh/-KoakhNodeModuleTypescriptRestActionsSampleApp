@@ -1,0 +1,9 @@
+.bak/
+.vscode/chrome/
+*.log
+bin/
+dist/
+downloads/
+node_modules/
+volumes/
+.env

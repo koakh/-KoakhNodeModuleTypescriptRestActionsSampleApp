@@ -1,0 +1,23 @@
+<%- include('header.ejs') %>
+<div class="row">
+  <% model.forEach(function(item) { %>
+    <div class="col-sm-12">
+      <div class="card fluid">
+        <h2><%=item.action%> : <%=item.formattedCreatedDate%></h2>
+        <% if (item.payload) { %>
+          <h3>payload</h3>
+          <pre><%=JSON.stringify(item.payload, undefined, 2)%></pre>
+        <% } %>
+        <% if (item.error) { %>
+          <h3>error</h3>
+          <pre><%=JSON.stringify(item.error, undefined, 2)%></pre>
+        <% } %>
+        <% if (item.result) { %>
+          <h3>result</h3>
+          <pre><%=JSON.stringify(item.result, undefined, 2)%></pre>
+        <% } %>
+      </div><!--card fluid-->
+    </div><!--col-sm-12-->
+    <% })%>
+</div><!--row-->
+<%- include('footer.ejs') %>

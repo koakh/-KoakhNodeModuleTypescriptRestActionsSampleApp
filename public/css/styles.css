@@ -1,0 +1,16 @@
+body {
+  background: #ededed;
+  margin-bottom: 5px;
+}
+
+body > header {
+  margin-bottom: 5px;
+}
+
+.card.fluid {
+  padding: 5px;
+}
+
+a.button.selected {
+  color: #1565c0;
+}

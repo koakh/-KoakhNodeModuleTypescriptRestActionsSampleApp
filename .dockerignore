@@ -1,0 +1,15 @@
+volumes/
+node_modules/
+packages/
+README.md
+LICENSE
+npm-debug.log
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+.vscode
+*.env
+*.sh
+*.md

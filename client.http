@@ -1,0 +1,163 @@
+@host = localhost
+@port = 9050
+@uriBase = https://{{host}}:{{port}}/api
+@uri = {{uriBase}}
+@contentType = application/json
+@tokenGuardKey = Bearer YOUR-SECRET-KEY-HERE
+
+# model
+@auditId = 5f58a82cdc6bcc5ccf1fd6cd
+
+// @name createAudit
+POST {{uri}}/audit HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+{
+	"action": "ACTION_SHELL_SERVICE_SYSTEM_SERVICE_UFW_STATUS",
+  "payload": {
+    "body": {
+      "cmd": "service",
+      "args": ["sshd", "status"]
+    }
+  },
+  "result": "OK"
+}
+
+### audit: getAuditAll
+
+// @name getAuditAll
+GET {{uri}}/audit HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+### audit: getAudit
+
+// @name getAudit
+GET {{uri}}/audit/{{auditId}} HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+### audit: updateAudit
+
+// @name updateAudit
+PUT {{uri}}/audit/{{auditId}} HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+{
+  "result": "KO"
+}
+
+### audit: removeAudit
+
+// @name removeAudit
+DELETE {{uri}}/audit/{{auditId}} HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+###
+
+// @name ACTION_ACTION_LIST
+POST {{uriBase}}/action HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+{ 
+  "action": "ACTION_ACTION_LIST"
+}
+
+###
+
+// @name ACTION_CONSOLE_LOG
+POST {{uriBase}}/action HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+{
+	"action": "ACTION_CONSOLE_LOG",
+	"payload": {
+		"body": {
+			"message":"hello world"
+		}
+	}
+}
+
+###
+
+// @name ACTION_ACK_OK
+POST {{uriBase}}/action HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+{
+	"action": "ACTION_ACK_OK"
+}
+
+###
+
+// @name ACTION_ACK_KO
+POST {{uriBase}}/action HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+{
+	"action": "ACTION_ACK_KO"
+}
+
+###
+
+// @name ACTION_SHELL_SERVICE_GENERIC_SHELL_EXEC
+POST {{uriBase}}/action HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+{ 
+  "action": "ACTION_SHELL_SERVICE_GENERIC_SHELL_EXEC",
+  "payload": {
+    "body": {
+      "cmd": "service",
+      "args": ["sshd", "status"]
+      // "cwd": null,
+      // "showLog": false
+    }
+  }
+}
+
+###
+
+// @name ACTION_SHELL_SERVICE_SYSTEM_SERVICE_UFW_STATUS
+POST {{uriBase}}/action HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+{ 
+  "action": "ACTION_SHELL_SERVICE_SYSTEM_SERVICE",
+  "payload": {
+    "body": {
+      "service": "ufw",
+      "action": "status"
+      // "cwd": null,
+      // "showLog": false
+    }
+  }
+}
+
+###
+
+// @name ACTION_SHELL_SERVICE_SYSTEM_SERVICE_SSHD_STATUS
+POST {{uriBase}}/action HTTP/1.1
+Authorization: {{tokenGuardKey}}
+Content-Type: {{contentType}}
+
+{ 
+  "action": "ACTION_SHELL_SERVICE_SYSTEM_SERVICE",
+  "payload": {
+    "body": {
+      "service": "ssh",
+      "action": "status"
+      // "cwd": null,
+      // "showLog": false
+    }
+  }
+}

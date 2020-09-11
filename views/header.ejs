@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acme: actions api sample app</title>    
+    <link rel="stylesheet" href="/css/mini-default.min.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="sticky">
+      <a href="#" class="logo">Acme</a>
+      <% if (page == "api") { %>
+        <a href="/doc?apiKey=<%=apiKey%>" class="button selected">Docs</a>
+      <% } else { %>
+        <a href="/doc?apiKey=<%=apiKey%>" class="button">Docs</a>
+      <% } %>
+
+      <% if (page == "audit") { %>
+        <a href="/audit?apiKey=<%=apiKey%>" class="button selected">Audit</a>
+      <% } else { %>
+        <a href="/audit?apiKey=<%=apiKey%>" class="button">Audit</a>
+      <% } %>
+    </header>
+    <section>
