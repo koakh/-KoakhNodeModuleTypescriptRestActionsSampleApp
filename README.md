@@ -4,6 +4,12 @@
 
 a sample project for [@koakh/typescript-rest-actions-api](https://www.npmjs.com/package/@koakh/typescript-rest-actions-api) module
 
+- [based on repo](https://github.com/koakh/KoakhNodeModuleTypescriptStarter)
+- [github](https://github.com/koakh/KoakhNodeModuleTypescriptRestActions.git)
+- [npm](https://www.npmjs.com/package/@koakh/typescript-rest-actions-api)
+- [KoakhNodeModuleTypescriptRestActionsSampleApp](https://github.com/koakh/-KoakhNodeModuleTypescriptRestActionsSampleApp)
+
+
 ## Start Project
 
 ```shell
