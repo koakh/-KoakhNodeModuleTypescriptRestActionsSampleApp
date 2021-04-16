@@ -1,5 +1,5 @@
 # base image
-FROM node:12.2.0-alpine
+FROM node:12.21-alpine
 
 # set working directory
 WORKDIR /usr/src/app
