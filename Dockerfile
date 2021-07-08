@@ -1,5 +1,5 @@
 # base image
-FROM node:12.2.0-alpine
+FROM node:erbium-alpine3.11
 
 # set working directory
 WORKDIR /usr/src/app
